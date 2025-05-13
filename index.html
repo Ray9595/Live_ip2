@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scanning Device Info...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding-top: 60px;
+    }
+    #progressContainer {
+      width: 80%;
+      background-color: #ddd;
+      margin: 40px auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #progressBar {
+      height: 30px;
+      width: 0%;
+      background-color: #4caf50;
+    }
+    #info {
+      margin-top: 30px;
+      font-size: 1.2em;
+    }
+    ul {
+      text-align: left;
+      display: inline-block;
+      font-size: 1em;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      list-style: none;
+    }
+    li::before {
+      content: "• ";
+      color: #d00000;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    a {
+      text-decoration: none;
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Scanning Device Info...</h1>
+
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <div id="info">Gathering info...</div>
+
+  <script>
+    let progress = 0;
+    let interval = setInterval(() => {
+      progress += 1;
+      document.getElementById("progressBar").style.width = progress + "%";
+      if (progress >= 100) {
+        clearInterval(interval);
+        showFullPrank();
+      }
+    }, 40);
+
+    function showFullPrank() {
+      const ua = navigator.userAgent;
+      const fakeSites = [
+        "https://www.pornhub.com",
+        "https://www.naughtystepsisters.net",
+        "https://www.tinytoesfetish.xxx",
+        "https://www.iloveuncles.com",
+        "https://www.secretbrowser.xxx",
+        "https://www.incognitogonebad.com"
+      ];
+      const fakeSearches = [
+        "does size matter more than girth",
+        "midget stepmom stuck in sink",
+        "why am I into cartoon characters",
+        "can incognito mode be tracked",
+        "deleted history recovery tool",
+        "how to fake sleep when parents enter",
+        "am I normal if I watch weird stuff",
+        "do women like long or thick more",
+        "alien tentacle fanfiction site",
+        "how to hide browser history forever"
+      ];
+
+      let content = "<h2>Browsing History</h2><ul>";
+      fakeSites.forEach(site => {
+        content += `<li><a href="#">${site}</a></li>`;
+      });
+      content += "</ul><h2>Recent Google Searches</h2><ul>";
+      fakeSearches.forEach(search => {
+        content += `<li><a href="#">Google search: ${search}</a></li>`;
+      });
+      content += "</ul><br><strong>Device:</strong> " + ua;
+
+      document.getElementById("info").innerHTML = content;
+    }
+  </script>
+
+</body>
+</html>
